@@ -15,7 +15,9 @@ import org.testng.annotations.Test;
 public class LoginBos {
     private WebDriver driver ;
     private WebDriverWait wait;
-    final static int WAIT_TIME = 5;
+    final private static int WAIT_TIME = 5;
+    final private static String USER_NAME = "15012341234";
+    final private static String PASSWORD = "***";
 
 
     @BeforeClass
@@ -31,8 +33,8 @@ public class LoginBos {
     @Test
     public void once() throws InterruptedException {
         driver.get("https://bos-admin-test.kkjiaju.net/login");
-        driver.findElement(By.cssSelector("#loginname")).sendKeys("15012341234");
-        driver.findElement(By.id("password")).sendKeys("sjm123456");
+        driver.findElement(By.cssSelector("#loginname")).sendKeys(USER_NAME);
+        driver.findElement(By.id("password")).sendKeys(PASSWORD);
         WebElement img = driver.findElement(By.id("CAPTCHA"));
         String captcha = new GetCode().getValidateCode(driver,img);
         driver.findElement(By.id("validateCode")).clear();
@@ -45,7 +47,7 @@ public class LoginBos {
         System.out.println("begin to login");
         driver.get("https://bos-admin-test.kkjiaju.net/login");
         driver.findElement(By.cssSelector("#loginname")).sendKeys("15012341234");
-        driver.findElement(By.id("password")).sendKeys("sjm123456");
+        driver.findElement(By.id("password")).sendKeys("***");
         //TODO 识别验证码并自动输入
         WebElement img = driver.findElement(By.id("CAPTCHA"));
         String captcha = new GetCode().getValidateCode(driver,img);
@@ -62,6 +64,7 @@ public class LoginBos {
             }
         }catch (Exception e){
             System.out.println("未成功识别验证码，重新登录");
+            e.printStackTrace();
             logIn();
         }
         //driver.findElement(By.xpath("//input[@value='登录']")).click();
