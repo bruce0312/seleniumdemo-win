@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="testSuite1">
+    <test name="UITest">
+        <classes>
+            <class name="testcase.testNG" />
+            <class name="testcase.testNG2" />
+            <class name="testcase.testNG3" />
+        </classes>
+    </test>
+</suite>
