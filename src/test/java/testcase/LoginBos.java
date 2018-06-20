@@ -43,7 +43,7 @@ public class LoginBos {
     }
 
     @Test
-    public void logIn() throws Exception {
+    public void logIn() {
         System.out.println("begin to login");
         driver.get("https://bos-admin-test.kkjiaju.net/login");
         driver.findElement(By.cssSelector("#loginname")).sendKeys(USER_NAME);
