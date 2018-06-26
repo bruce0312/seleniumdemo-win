@@ -17,7 +17,7 @@ public class LoginBos {
     private WebDriverWait wait;
     final private static int WAIT_TIME = 5;
     final private static String USER_NAME = "15012341234";
-    final private static String PASSWORD = "***";
+    final private static String PASSWORD = "222";
 
 
     @BeforeClass
@@ -43,21 +43,18 @@ public class LoginBos {
     }
 
     @Test
-    public void logIn() throws Exception {
+    public void logIn() {
         System.out.println("begin to login");
         driver.get("https://bos-admin-test.kkjiaju.net/login");
-        driver.findElement(By.cssSelector("#loginname")).sendKeys("15012341234");
-        driver.findElement(By.id("password")).sendKeys("***");
+        driver.findElement(By.cssSelector("#loginname")).sendKeys(USER_NAME);
+        driver.findElement(By.id("password")).sendKeys(PASSWORD);
         //TODO 识别验证码并自动输入
         WebElement img = driver.findElement(By.id("CAPTCHA"));
         String captcha = new GetCode().getValidateCode(driver,img);
         driver.findElement(By.id("validateCode")).clear();
         driver.findElement(By.id("validateCode")).sendKeys(captcha);
-        System.out.println("3333");
         //driver.findElement(By.xpath("//input[@value='登录']")).click();
         try {
-
-            System.out.println("222");
             if(!driver.findElement(By.xpath("//li[@class='role']//span")).isDisplayed()){
                 System.out.println("登录成功");
                 logIn();
