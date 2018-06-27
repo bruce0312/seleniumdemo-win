@@ -1,6 +1,9 @@
 package testcase;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -12,6 +15,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class LianJiaTest {
@@ -19,6 +24,7 @@ public class LianJiaTest {
     private WebDriver driver;
     private WebDriverWait wait;
     private String baseUrl = "https://www.lianjia.com/";
+    private String excelPath = "./src/test/resources/DataProvider.xlsx";
     @BeforeClass
     public void setUp(){
         System.setProperty("webdriver.chrome.driver","./src/test/java/driver/chromedriver.exe");
@@ -26,7 +32,8 @@ public class LianJiaTest {
         driver.manage().window().maximize();
     }
 
-    @Test(dataProvider = "getSearchData")
+    //@Test(dataProvider = "getSearchData")
+    @Test(dataProvider = "useExcelData")
     public void searchCity(String SearchKey){
         driver.get(baseUrl);
         //WebElement text = driver.findElement(By.partialLinkText(SearchKey));
@@ -50,7 +57,7 @@ public class LianJiaTest {
 
     }
 
-    @DataProvider
+    @DataProvider(name = "original_way")
     public static Object[][] getSearchData(){
         Object[][] o = new Object[4][1];
         o[0][0] = "新龙城";
@@ -58,6 +65,30 @@ public class LianJiaTest {
         o[2][0] = "北京新天地";
         o[3][0] = "望京";
         return o;
+    }
+
+//    @DataProvider(name = "useExcelData")
+//    public Object[][] getData() throws Exception{
+//        return getDataFromExcel("./src/test/resources/DataProvider.xlsx");
+//    }
+
+    @DataProvider(name = "useExcelData")
+    public Object[][] getDataFromExcel() throws Exception {
+        Workbook workbook;
+        try(FileInputStream excelInputStream = new FileInputStream("./src/test/resources/DataProvider.xlsx")){
+            workbook = new XSSFWorkbook(excelPath);
+        }
+        Sheet sheet = workbook.getSheetAt(0);
+        int rowInExcel = sheet.getPhysicalNumberOfRows();
+        int colInExcel = sheet.getRow(0).getPhysicalNumberOfCells();
+        Object[][] obj = new Object[rowInExcel-1][colInExcel];
+        for(int row=1;row<rowInExcel;row++){
+            for(int col=0;col<colInExcel;col++){
+                obj[row-1][col] = sheet.getRow(row).getCell(col).getStringCellValue();
+                System.out.println(obj[row-1][col]);
+            }
+        }
+        return obj;
     }
 
     @AfterClass
