@@ -7,13 +7,19 @@ import org.openqa.selenium.support.PageFactory;
 
 public class hupujieSearchHomePage {
     @FindBy(id = "showfoucs1")
-    public WebElement searchBox;
+    private WebElement searchBox;
 
     @FindBy(className = "btn-searchs")
-    public WebElement SearchBtn;
+    private WebElement SearchBtn;
 
     public hupujieSearchHomePage(WebDriver driver){
         PageFactory.initElements(driver,this);
+    }
+
+    public void doSearch(){
+        searchBox.clear();
+        searchBox.sendKeys("德国");
+        SearchBtn.click();
     }
 
 

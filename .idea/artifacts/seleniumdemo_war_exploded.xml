@@ -38,14 +38,11 @@
           <element id="library" level="project" name="Maven: org.ghost4j:ghost4j:1.0.1" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.9.2" />
-          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
           <element id="library" level="project" name="Maven: org.apache.xmlgraphics:xmlgraphics-commons:1.4" />
           <element id="library" level="project" name="Maven: com.lowagie:itext:2.1.7" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
           <element id="library" level="project" name="Maven: net.sourceforge.lept4j:lept4j:1.1.2" />
           <element id="library" level="project" name="Maven: org.rococoa:rococoa-core:0.5" />
-          <element id="library" level="project" name="Maven: cglib:cglib:2.2.2" />
-          <element id="library" level="project" name="Maven: asm:asm:3.3.1" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:1.1.6" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.1.6" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.18" />
@@ -59,6 +56,11 @@
           <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" />
           <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
           <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.04" />
+          <element id="library" level="project" name="Maven: cglib:cglib:3.2.6" />
+          <element id="library" level="project" name="Maven: org.ow2.asm:asm:6.0" />
+          <element id="library" level="project" name="Maven: org.apache.ant:ant:1.9.6" />
+          <element id="library" level="project" name="Maven: org.apache.ant:ant-launcher:1.9.6" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

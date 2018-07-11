@@ -4,10 +4,12 @@ import methods.ReadFromExcel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pageobject.hupujieResultHomePage;
 import pageobject.hupujieSearchHomePage;
 
 public class hupuSearch {
@@ -24,7 +26,7 @@ public class hupuSearch {
         driver.get(baseUrl);
     }
 
-    @Test(dataProvider = "dataInExcel")
+    //@Test(dataProvider = "dataInExcel")
     public void doSearch(){
 
     }
@@ -32,10 +34,7 @@ public class hupuSearch {
     @Test(priority = 0)
     public void hupuSearchPO(){
         hupujieSearchHomePage hpSearchPO = new hupujieSearchHomePage(driver);
-        hpSearchPO.searchBox.clear();
-        hpSearchPO.searchBox.sendKeys("德国");
-        hpSearchPO.SearchBtn.click();
-
+        hpSearchPO.doSearch();
         String currentHandle = driver.getWindowHandle();
         for(String handle:driver.getWindowHandles()){
             if(handle.equals(currentHandle)){
@@ -44,12 +43,10 @@ public class hupuSearch {
             driver.switchTo().window(handle);
         }
 
-
-    }
-
-    @Test(priority = 1)
-    public void hupuResultPO(){
-
+        hupujieResultHomePage hpResultPO = new hupujieResultHomePage(driver);
+        hpResultPO.changeResult();
+        System.out.println("搜索结果通过验证");
+        Reporter.log("搜索结果通过验证");
     }
 
 
